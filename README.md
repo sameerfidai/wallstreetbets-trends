@@ -1,5 +1,8 @@
 # \WallstreetBets Trend
 
+Live website: https://wallstreetbets-trend.herokuapp.com/
+
+
 Shows the top 50 discussed stocks on the popular subreddit r\WallstreetBets
 
 Made with Flask
