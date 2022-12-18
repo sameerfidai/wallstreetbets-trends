@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="shortcut icon"
+            href="{{ url_for('static', filename='favicon.png') }}"
+        />
+        <link rel="stylesheet" href={{ url_for('static',
+        filename='css/style.css') }}>
+        <title>Reddit Stocks</title>
+    </head>
+    <body>
+        <div class="main-container">
+            <nav>
+                <div class="wsb-div">
+                    <a
+                        href="https://www.reddit.com/r/wallstreetbets/"
+                        target="_blank"
+                    >
+                        <img
+                            class="wsb-logo"
+                            src="{{ url_for('static', filename='wsbkid1.png') }}"
+                            alt=""
+                    /></a>
+
+                    <h2>
+                        <a
+                            href="https://www.reddit.com/r/wallstreetbets/"
+                            target="_blank"
+                            >/WallstreetBets</a
+                        >
+                    </h2>
+                </div>
+                <div class="toggle-div">
+                    <img
+                        id="icon"
+                        class="toggle"
+                        src="{{ url_for('static', filename='moon.png') }}"
+                        alt=""
+                    />
+                </div>
+            </nav>
+
+            <h1 class="header">{{header}}</h1>
+
+            <div class="chart-div">
+                <div class="heading-div">
+                    <h1 class="bullish">Bullish: {{bullish_stocks}}</h1>
+                    <h1 class="bearish">Bearish: {{bearish_stocks}}</h1>
+                </div>
+                <br />
+                <div class="chart-container">
+                    <div id="chart" class="chart"></div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script type="text/javascript">
+        var icon = document.getElementById("icon");
+        icon.onclick = () => {
+            document.body.classList.toggle("dark-theme");
+            if (document.body.classList.contains("dark-theme")) {
+                icon.src = "{{ url_for('static', filename='sun.png') }}"
+            } else {
+                icon.src = "{{ url_for('static', filename='moon.png') }}"
+            }
+        }
+
+        window.onresize = () => { window.location.reload()}
+        var graphs = {{graphJSON | safe}};
+        Plotly.plot('chart',graphs,{});
+    </script>
+</html>
