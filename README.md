@@ -1,4 +1,4 @@
-# \WallstreetBets Trend
+#WallstreetBets Trend
 
 
 Shows the top 50 discussed stocks on the popular subreddit r\WallstreetBets
